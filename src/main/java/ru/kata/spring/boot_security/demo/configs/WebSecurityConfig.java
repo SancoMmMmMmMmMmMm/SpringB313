@@ -17,13 +17,11 @@ import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private final SuccessUserHandler successUserHandler;
     private UserServiceImpl userServiceImpl;
-
     @Autowired
     public WebSecurityConfig(SuccessUserHandler successUserHandler, @Lazy UserServiceImpl userServiceImpl) {
         this.successUserHandler = successUserHandler;
         this.userServiceImpl = userServiceImpl;
     }
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -44,7 +42,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/login")
                 .permitAll();
     }
-
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder(10);

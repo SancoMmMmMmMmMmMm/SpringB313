@@ -20,20 +20,16 @@ public class User implements UserDetails {
 
     @Column(name = "first_name")
     private String firstName;
-
     @Column(name = "last_name")
     private String lastName;
 
     private String age;
-
     private String email;
-
     private String password;
 
     @ManyToMany
     @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles;
-
     public User() {
     }
 
@@ -48,7 +44,6 @@ public class User implements UserDetails {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -56,7 +51,6 @@ public class User implements UserDetails {
     public String getFirstName() {
         return firstName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
@@ -64,15 +58,14 @@ public class User implements UserDetails {
     public String getLastName() {
         return lastName;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+
     public String getAge() {
         return age;
     }
-
     public void setAge(String age) {
         this.age = age;
     }
@@ -80,17 +73,14 @@ public class User implements UserDetails {
     public String getEmail() {
         return email;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
 
-    // Override method interface UserDetails
     public String getUsername() {
         return email;
     }
 
-    // Override method interface UserDetails
     public String getPassword() {
         return password;
     }
@@ -120,7 +110,6 @@ public class User implements UserDetails {
                 Objects.equals(password, user.password) &&
                 Objects.equals(roles, user.roles);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(id, firstName, lastName, age, email, password, roles);
@@ -138,27 +127,22 @@ public class User implements UserDetails {
                 ", roles=" + roles +
                 '}';
     }
-
     public Collection<? extends GrantedAuthority> getAuthorities() {
         SimpleGrantedAuthority authority = new SimpleGrantedAuthority(roles.toString());
         return List.of(authority);
     }
-
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
-
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
-
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     @Override
     public boolean isEnabled() {
         return true;

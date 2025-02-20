@@ -24,7 +24,6 @@ public class Init {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
-
     @PostConstruct
     public void init() {
         Role role1 = roleRepository.findByRoleName("ROLE_ADMIN");
@@ -38,7 +37,6 @@ public class Init {
             role2 = new Role("ROLE_USER");
             roleRepository.save(role2);
         }
-        //password - admin = admin, user = user
         user1 = new User("admin", "admin", "35", "admin@gmail.com", "$2a$10$h18Jn0dnwb7pAuAWtFIydec0rXVDQrh7LzLJwvfW2zbc.QKP/4Rd.");
         user2 = new User("user", "user", "30", "user@gmail.com", "$2a$10$wTLs8HzcVUW3yOKCknkrE.oug5dKkui9Rl26ga6zYdB7zIQ5WdzFq");
 
@@ -51,11 +49,10 @@ public class Init {
 
         user1.setRoles(roles1);
         user2.setRoles(roles2);
-
+        //password  user@gmail.com = user, admin@gmail.com = admin
         userRepository.save(user1);
         userRepository.save(user2);
     }
-
     @PreDestroy
     public void destroy() {
         userRepository.delete(user1);

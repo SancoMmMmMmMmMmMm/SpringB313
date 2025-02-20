@@ -16,10 +16,8 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
     private UserServiceImpl userService;
     private RoleService roleService;
-
     @Autowired
     public AdminController(UserServiceImpl userService, RoleService roleService) {
         this.userService = userService;
@@ -49,7 +47,6 @@ public class AdminController {
         model.addAttribute("roles", roleService.getRoles());
         return "add";
     }
-
     @PostMapping("/addNewUser")
     public String addNewUser(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -65,7 +62,6 @@ public class AdminController {
         }
         return "redirect:/admin";
     }
-
     @GetMapping("/editUser")
     public String editUserForm(@RequestParam("id") Long id, Model model) {
         User user = userService.getUserById(id);
@@ -73,7 +69,6 @@ public class AdminController {
         model.addAttribute("roles", roleService.getRoles());
         return "edit";
     }
-
     @PostMapping("/edit")
     public String editUser(@ModelAttribute("user") User user, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasErrors()) {
@@ -96,7 +91,6 @@ public class AdminController {
         userService.deleteUser(userService.getUserById(id));
         return "redirect:/admin";
     }
-
     @GetMapping("/users")
     public String getAllUsers(Model model) {
         model.addAttribute("users", userService.getAllUsers());

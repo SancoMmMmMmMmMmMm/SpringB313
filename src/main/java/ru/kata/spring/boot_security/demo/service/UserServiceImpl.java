@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
-
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -30,12 +29,10 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
-
     @Override
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
-
     @Override
     public User getUserById(Long id) {
         User user = null;
@@ -51,7 +48,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
-
     @Override
     public void updateUser(User user) {
         User oldUser = getUserById(user.getId());
@@ -60,7 +56,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         }
         userRepository.save(user);
     }
-
     @Override
     public void deleteUser(User user) {
         userRepository.deleteById(user.getId());
@@ -76,7 +71,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), getAuthorities(user.getRoles()));
 
     }
-
     @Transactional
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
@@ -86,4 +80,3 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
     }
 }
-
