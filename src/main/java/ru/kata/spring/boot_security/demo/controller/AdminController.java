@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
+import ru.kata.spring.boot_security.demo.service.UserService;
 import ru.kata.spring.boot_security.demo.service.UserServiceImpl;
 
 import java.security.Principal;
@@ -16,8 +17,7 @@ import java.security.Principal;
 @Controller
 @RequestMapping("/admin")
 public class AdminController {
-
-    private UserServiceImpl userService;
+    private UserService userService;
     private RoleService roleService;
 
     @Autowired

@@ -20,14 +20,11 @@ public class User implements UserDetails {
 
     @Column(name = "first_name")
     private String firstName;
-
     @Column(name = "last_name")
     private String lastName;
 
     private String age;
-
     private String email;
-
     private String password;
 
     @ManyToMany
@@ -69,6 +66,7 @@ public class User implements UserDetails {
         this.lastName = lastName;
     }
 
+
     public String getAge() {
         return age;
     }
@@ -85,12 +83,10 @@ public class User implements UserDetails {
         this.email = email;
     }
 
-    // Override method interface UserDetails
     public String getUsername() {
         return email;
     }
 
-    // Override method interface UserDetails
     public String getPassword() {
         return password;
     }

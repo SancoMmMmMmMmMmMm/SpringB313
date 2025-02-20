@@ -21,7 +21,6 @@ import java.util.stream.Collectors;
 @Service
 @Transactional
 public class UserServiceImpl implements UserService, UserDetailsService {
-
     private UserRepository userRepository;
     private PasswordEncoder passwordEncoder;
 
@@ -77,6 +76,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     }
 
+    @Override
     @Transactional
     public User findByEmail(String email) {
         return userRepository.findByEmail(email);
@@ -86,4 +86,3 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
     }
 }
-
