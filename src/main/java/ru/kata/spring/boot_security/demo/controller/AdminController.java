@@ -54,14 +54,14 @@ public class AdminController {
     public String addNewUser(@ModelAttribute("user") User user, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
             model.addAttribute("roles", roleService.getRoles());
-            return "add"; // Возвращаемся к форме, если есть ошибки
+            return "add";
         }
         try {
             userService.addUser(user);
         } catch (DataIntegrityViolationException e) {
             bindingResult.rejectValue("email", "error.user", "Учетная запись для этого Email уже существует.");
             model.addAttribute("roles", roleService.getRoles());
-            return "add"; // Возвращаемся к форме, если есть ошибка уникальности
+            return "add";
         }
         return "redirect:/admin";
     }
