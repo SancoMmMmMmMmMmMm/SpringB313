@@ -28,7 +28,6 @@ public class Role implements GrantedAuthority {
     public Long getId() {
         return id;
     }
-
     public void setId(Long id) {
         this.id = id;
     }
@@ -36,7 +35,6 @@ public class Role implements GrantedAuthority {
     public String getRoleName() {
         return roleName;
     }
-
     public void setRoleName(String roleName) {
         this.roleName = roleName;
     }
@@ -44,7 +42,6 @@ public class Role implements GrantedAuthority {
     public List<User> getUsers() {
         return users;
     }
-
     public void setUsers(List<User> users) {
         this.users = users;
     }
@@ -53,7 +50,6 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return roleName;
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -66,7 +62,6 @@ public class Role implements GrantedAuthority {
     public int hashCode() {
         return Objects.hash(id, roleName);
     }
-
     @Override
     public String toString() {
         return roleName;

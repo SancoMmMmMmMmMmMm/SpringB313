@@ -24,7 +24,6 @@ public class Init {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
     }
-
     @PostConstruct
     public void init() {
         Role role1 = roleRepository.findByRoleName("ROLE_ADMIN");
@@ -54,7 +53,6 @@ public class Init {
         userRepository.save(user1);
         userRepository.save(user2);
     }
-
     @PreDestroy
     public void destroy() {
         userRepository.delete(user1);
